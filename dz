@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+long long ace(long long n)
+{
+long long ace = 0;
+for(long long i = n; i>0; i/=3){
+if(i%3 == 2){
+ace++;
+}
+}
+return ace;
+}
+
+long long findtwos(long long n, long long* &Arr, long long k)
+{
+long long Sum=0;
+for(int i=0; i<n; i++){
+if(ace(Arr[i]) < k){
+cout « Arr[i] « " ";
+}
+Sum+=ace(Arr[i]);
+}
+return Sum;
+
+}
+
+int main() {
+long long k, n;
+cin » k » n;
+long long* Arr = new long long [n];
+for(long long i = 0; i<n; i++){
+cin » Arr[i];
+}
+cout « findtwos(n, Arr, k);
+
+return 0;
+}
+ 
+
