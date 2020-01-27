@@ -1,0 +1,51 @@
+#include <iostream>
+#include <vector> 
+#include <string> 
+#include <algorithm> 
+using namespace std; 
+// конструкторы
+struct array { 
+int size; 
+int* data; 
+array (int size = 0) { 
+data = new int [size]; 
+} 
+// заполнили размер массива и обеспечили опр. память
+~ array () { 
+delete [] data; 
+} 
+// освобождение памяти
+array ( const array & a) { 
+size = a.size; 
+data = new int[size]; 
+for (int i = 0; i < size; i++) 
+data[i] = a.data[i]; 
+} 
+// копирование массива
+const array & operator = (const array & a) { 
+if (this == &a) return *this; 
+delete [] data; 
+size = a.size; 
+data = new int[size]; 
+for (int i = 0; i < size; i++) 
+data[i] = a.data[i]; 
+return *this; 
+} 
+ // присвоение
+ int & operator [] (int i) {
+ if ( i < 0) || ( i >= size) {
+ cout << "error";
+ return data[0];
+ }
+ return data[i];
+ }
+ // обращение
+}; 
+int main() 
+{ 
+array arr(1); 
+arr.data[0] = 1; 
+array brr(1); 
+brr = arr; 
+cout « brr.data[0]; 
+}
